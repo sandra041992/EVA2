@@ -1,0 +1,108 @@
+.color_body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(18, 255, 251);
+}
+
+@media screen and (min-width:480px) {
+    .color_body {
+        background-color: pink;
+    }
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+main {
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 40px;
+}
+
+section h2 {
+    color: #333;
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+form input[type="text"],
+form input[type="email"],
+form textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+}
+
+form button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+
+table {
+    width: 60%;
+    border-collapse: collapse;
+    margin: 20px auto;
+    text-align: left;
+}
+th, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+    border-style: inset;
+    background-color: #f2f2f2;
+}
+
+
+.horario {
+    color:rgb(0, 0, 0);
+    font-weight:bolder;
+    font-family:Helvetica;
+    padding: 10px;
+    text-align: center;
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 20px;
+    color: rgb(0, 0, 0);
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
