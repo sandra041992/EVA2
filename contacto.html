@@ -28,24 +28,41 @@
 
             <br />
 
+            <div class="relative">
+                
+            </div>
             <section>
                 <h2><b>Registrate aqu&iacute;</b></h2>
-                <form method="post" onsubmit="mostrarMensaje(event)" id="miForm">
+
+                <form onsubmit="return validateForm()">
                     <label for="nombre">Nombre:</label>
                     <input type="text" id="nombre" name="nombre" required>
                     <label for="email">Email:</label>
                     <input type="email" id="email" name="email" required>
-                    <label for="mensaje">Mensaje:</label>
-                    <textarea id="mensaje" name="mensaje" required></textarea>
+                    
+                    <span id="error-nombre" style="color: red; display: none;">El nombre no puede contener números.</span>
                     <button type="submit">Enviar</button>
                 </form>
             </section>
-    
+
+            <br />
+
             <div class="text-center">
                 <img src="Imagenes/CONTACTOS.png" alt="Imagen de inicio" class="img-responsive center-block">
             </div>
     
             <script>
+                function validateForm() {
+                    var nombre = document.getElementById("nombre").value;
+                    var error = document.getElementById("error-nombre");
+                    var regex = /^[A-Za-z\s]+$/;
+                    if (!regex.test(nombre)) {
+                        error.style.display = "block";
+                        return false;
+                    }
+                    error.style.display = "none";
+                    return true;
+                }
                 function mostrarMensaje(event) {
                     var nombre = document.getElementById("nombre").value;
                     event.preventDefault(); // Evita el envío del formulario
