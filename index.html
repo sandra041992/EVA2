@@ -127,7 +127,7 @@
         <link rel="icon" href="Imagenes/xina_shop_icon.ico"> <!-- HACE REFERENCIA AL ICONO DE LA PAGINA -->
         <!-- AQUI SE HACE REFERENCIA A LA LIBRERIA DE BOOTSTRAP (UNICAMENTE A LAS CLASES DE BOOSTRAP - PARA SU RESPECTIVO DISEÑO) -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-        <link rel="stylesheet" href="estilo.css"> <!-- ESTILO PERSONALIZADO DE TIPO CSS -->
+        <!-- <link rel="stylesheet" href="estilo.css"> --> <!-- ESTILO PERSONALIZADO DE TIPO CSS -->
     </head>
 
     <body class="color_body">
@@ -138,22 +138,26 @@
                     <ul class="navbar-nav">
                         <li class="nav-item"><a class="nav-link text-light" href="index.html">Home</a></li>
                         <li class="nav-item"><a class="nav-link text-light" href="https://www.farmrio.cl/productos/vestido?gad_source=1&gclid=CjwKCAjw57exBhAsEiwAaIxaZpiEWKn6bTi4YIS5hmuh4Tt13fyv0Kv6cKE1P7XmzF_zTiPXrDt_CRoC6D4QAvD_BwE" target="_blank">Catálogo de Ropa</a></li>
-                        <li class="nav-item"><a class="nav-link text-light" href="contacto.html">Registrate</a></li>
+                        <li class="nav-item"><a class="nav-link text-light" href="#registro">Registrate</a></li>
                         <li class="nav-item"><a class="nav-link text-light" href="#quienes-somos">Quienes somos</a></li>
+                        <li class="nav-item"><a class="nav-link text-light" href="#comentarios">Comentarios</a></li>
+
                     </ul>
                 </nav>
             </header>
     
             <br />
-
-            <h2>Bienvenid@s a la tienda <b>XINA_SHOP</b></h2>
-            <p>Aqu&iacute; encontraras las mejores tendencias de moda.</p>
-            <div class="relative">
-                <img src="Imagenes/xinashop.jpg" alt="Imagen de inicio" class="imagen">
-            </div>
-
+            <section id="home">
+                <br>
+                <h2>Bienvenid@s a la tienda <b>XINA_SHOP</b></h2>
+                <p>Aqu&iacute; encontraras las mejores tendencias de moda.</p>
+                <div class="relative">
+                    <img src="Imagenes/xinashop.jpg" alt="Imagen de inicio" class="imagen">
+                </div>
+            </section>
             <section id="quienes-somos">
                 <br />
+                <br>
                 <h3><b>Quienes Somos:</b></h3>
                 <p><h3>Somos una tienda de ropa para mujer comprometida con la calidad y la moda.</h3></p>
             </section>
@@ -185,6 +189,227 @@
                 </tr>
             </table>
 
+            <!-- Registro del cliente -->
+        <section id="registro">
+            <br />
+            <h2><b>Regístrate aquí</b></h2>
+            <p>¡Regístrate para recibir información de nuestras promociones y descuentos!</p>
+
+            <form id="miForm" method="post" onsubmit="return handleFormSubmit(event)">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required>
+                <span id="error-nombre" style="color: red; display: none;">El nombre no puede contener números.</span>
+                <br>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <br>
+
+                <button type="submit">Enviar</button>
+            </form>
+        </section>
+
+        <script>
+            function handleFormSubmit(event) {
+                event.preventDefault();  // Previene el comportamiento predeterminado del envío del formulario
+
+                function validateForm() {
+                    const nombre = document.getElementById('nombre').value;
+                    const errorNombre = document.getElementById('error-nombre');
+                    const regex = /\d/;  // Expresión regular para buscar números
+
+                    if (regex.test(nombre)) {
+                        errorNombre.style.display = 'inline';
+                        alert("El nombre no puede contener números.");  // Muestra alerta
+                        return false;  // Evita que el formulario se envíe
+                    } else {
+                        errorNombre.style.display = 'none';
+                        return true;  // Permite que el formulario se envíe
+                    }
+                }
+
+                function mostrarMensaje() {
+                    var nombre = document.getElementById("nombre").value;
+                    alert("¡Muchas gracias por comunicarte con XINA_SHOP!\nPronto te contactaremos " + nombre + ".");
+                }
+
+                if (validateForm()) {
+                    mostrarMensaje();
+                    // Aquí puedes agregar la lógica para enviar el formulario si es necesario
+                    document.getElementById('miForm').submit();  // Envía el formulario
+                }
+            }
+        </script>
+
+        <div class="text-center">
+            <img src="Imagenes/CONTACTOS.png" alt="Imagen de inicio" class="img-responsive center-block">
+        </div>
+
+        <br />
+        <br />
+        <br />
+
+        <!-- Comentarios Section -->
+        <section id="comentarios">
+            <div id="comments">
+                <h1>¡ Comenta con nosotros !</h1>
+
+                <!-- Lista de comentarios -->
+                <div v-if="comments.length > 0">
+                    <div class="comment" v-for="comment in comments" :key="comment.id">
+                        <div class="info">
+                            <span>{{ comment.author }}</span> - <span>{{ comment.date }}</span>
+                            <div class="rating">
+                                <span v-for="n in comment.rating" class="fa fa-star"></span>
+                            </div>
+                        </div>
+                        <p>{{ comment.content }}</p>
+                        <button @click="editComment(comment)">Editar</button>
+                        <button @click="deleteComment(comment.id)">Eliminar</button>
+
+                        <!-- Formulario de edición -->
+                        <div v-if="comment.id === editingId" class="edit-form">
+                            <h3>Editar Comentario</h3>
+                            <label for="edit-author">Autor:</label>
+                            <input type="text" id="edit-author" v-model="editedComment.author" required>
+                            <br>
+                            <label for="edit-rating">Valoración:</label>
+                            <select id="edit-rating" v-model="editedComment.rating" required>
+                                <option disabled value="">Selecciona una valoración</option>
+                                <option v-for="n in 5" :value="n">{{ n }} estrella(s)</option>
+                            </select>
+                            <br>
+                            <br>
+                            <label for="edit-content">Comentario:</label>
+                            <textarea id="edit-content" v-model="editedComment.content" required></textarea>
+                            <br>
+                            <br>
+                            <button @click="updateComment">Actualizar</button>
+                            <button @click="cancelEdit">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+                <div v-else>
+                    <p>No hay comentarios aún.</p>
+                </div>
+
+                <!-- Formulario para agregar un nuevo comentario -->
+                <div class="new-comment">
+                    <h2>Agregar un Comentario</h2>
+                    <label for="new-author">Nombre del Cliente:</label>
+                    <input type="text" id="new-author" v-model="newComment.author" required>
+                    <br>
+                    <br>
+                    <label for="new-rating">Valoración:</label>
+                    <select id="new-rating" v-model="newComment.rating" required>
+                        <option disabled value="">Selecciona una valoración</option>
+                        <option v-for="n in 5" :value="n">{{ n }} estrella(s)</option>
+                    </select>
+                    <br>
+                    <br>
+                    <label for="new-content">Comentario:</label>
+                    <textarea id="new-content" v-model="newComment.content" required></textarea>
+                    <br>
+                    <br>
+                    <button @click="addComment">Enviar Comentario</button>
+                    <button @click="downloadComments">Descargar Comentarios</button> <!-- Botón para descargar comentarios -->
+                </div>
+            </div>
+        </section>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+        <script>
+            new Vue({
+                el: '#comments',
+                data: {
+                    comments: [
+                        { id: 1, author: 'Esteban Caceres', date: '2024-06-22', rating: 5, content: 'Excelente producto, muy recomendado.' },
+                        { id: 2, author: 'María Vera', date: '2024-06-21', rating: 4, content: 'Buena calidad, pero el envío fue lento.' }
+                    ],
+                    newComment: {
+                        author: '',
+                        rating: '',
+                        content: ''
+                    },
+                    editingId: null,
+                    editedComment: {
+                        id: null,
+                        author: '',
+                        rating: '',
+                        content: ''
+                    }
+                },
+                methods: {
+                    addComment() {
+                        if (!this.newComment.author || !this.newComment.rating || !this.newComment.content) {
+                            alert('Por favor completa todos los campos.');
+                            return;
+                        }
+
+                        const currentDate = new Date().toISOString().slice(0, 10);
+                        const newId = this.comments.length > 0 ? this.comments[this.comments.length - 1].id + 1 : 1;
+
+                        this.comments.push({
+                            id: newId,
+                            author: this.newComment.author,
+                            rating: parseInt(this.newComment.rating),
+                            content: this.newComment.content,
+                            date: currentDate
+                        });
+
+                        this.newComment.author = '';
+                        this.newComment.rating = '';
+                        this.newComment.content = '';
+                    },
+                    editComment(comment) {
+                        this.editingId = comment.id;
+                        this.editedComment = {
+                            id: comment.id,
+                            author: comment.author,
+                            rating: comment.rating,
+                            content: comment.content
+                        };
+                    },
+                    updateComment() {
+                        const index = this.comments.findIndex(comment => comment.id === this.editedComment.id);
+                        if (index !== -1) {
+                            this.comments[index].author = this.editedComment.author;
+                            this.comments[index].rating = this.editedComment.rating;
+                            this.comments[index].content = this.editedComment.content;
+                        }
+
+                        this.cancelEdit();
+                    },
+                    deleteComment(id) {
+                        if (confirm('¿Estás seguro de eliminar este comentario?')) {
+                            this.comments = this.comments.filter(comment => comment.id !== id);
+                            this.cancelEdit();
+                        }
+                    },
+                    cancelEdit() {
+                        this.editingId = null;
+                        this.editedComment = {
+                            id: null,
+                            author: '',
+                            rating: '',
+                            content: ''
+                        };
+                    },
+                    downloadComments() {
+                        const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.comments));
+                        const downloadAnchorNode = document.createElement('a');
+                        downloadAnchorNode.setAttribute("href", dataStr);
+                        downloadAnchorNode.setAttribute("download", "comments.json");
+                        document.body.appendChild(downloadAnchorNode); // required for firefox
+                        downloadAnchorNode.click();
+                        downloadAnchorNode.remove();
+                    }
+                }
+            });
+        </script>
+    </main>
+
+
              <!-- OBTIENE EL AÑO EN CURSO MEDIANTE JAVASCRIPT -->
              <script>
                 var anio = new Date().getFullYear();
@@ -206,3 +431,4 @@
     </body>
 
 </html>
+
