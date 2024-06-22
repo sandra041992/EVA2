@@ -239,17 +239,17 @@
             <h2><b>Reg&iacute;strate aqu&iacute;</b></h2>
             <p>¡Reg&iacute;strate para recibir información de nuestras promociones y descuentos!</p>
 
-            <form id="miForm" method="post" onsubmit="return handleFormSubmit(event)">
-                <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre" name="nombre" required>
-                <span id="error-nombre" style="color: red; display: none;">El nombre no puede contener números.</span>
+            <form id="miForm" method="post" onsubmit="return handleFormSubmit(event)"> <!-- Formulario de registro -->
+                <label for="nombre">Nombre:</label> <!-- Campo para ingresar el nombre -->
+                <input type="text" id="nombre" name="nombre" required> <!-- Campo para ingresar el nombre -->
+                <span id="error-nombre" style="color: red; display: none;">El nombre no puede contener números.</span> <!-- Mensaje de error -->
                 <br>
 
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
+                <label for="email">Email:</label> <!-- Campo para ingresar el email -->
+                <input type="email" id="email" name="email" required> <!-- Campo para ingresar el email -->
                 <br>
 
-                <button class="btn">
+                <button class="btn"> <!-- Botón para enviar el formulario -->
                     ENVIAR
                 </button>
                 
@@ -261,13 +261,13 @@
                 event.preventDefault();  // Previene el comportamiento predeterminado del envío del formulario
 
                 function validateForm() {
-                    const nombre = document.getElementById('nombre').value;
-                    const errorNombre = document.getElementById('error-nombre');
+                    const nombre = document.getElementById('nombre').value; // Obtiene el valor del campo nombre
+                    const errorNombre = document.getElementById('error-nombre'); // Obtiene el elemento de error
                     const regex = /\d/;  // Expresión regular para buscar números
 
                     if (regex.test(nombre)) {
-                        errorNombre.style.display = 'inline';
-                        alert("El nombre no puede contener números.");  // Muestra alerta
+                        errorNombre.style.display = 'inline'; // Muestra la alerta si el usuario ingresa números
+                        alert("El nombre no puede contener números.");  // Aqui muestra la alerta si el usuario ingresa numeros
                         return false;  // Evita que el formulario se envíe
                     } else {
                         errorNombre.style.display = 'none';
@@ -276,9 +276,9 @@
                 }
 
                 function mostrarMensaje() {
-                    var nombre = document.getElementById("nombre").value;
+                    var nombre = document.getElementById("nombre").value; 
                     alert("¡Muchas gracias por comunicarte con XINA_SHOP!\nPronto te contactaremos " + nombre + ".");
-                }
+                }  // Aquí se muestra el mensaje despues de registrarse mas el nombre que ingreso el usuario
 
                 if (validateForm()) {
                     mostrarMensaje();
@@ -288,7 +288,7 @@
 
             }
             function mostrarMensaje() {
-                alert("¡Hola! Bienvenid@ a la tienda SHINA SHOP.");
+                alert("¡Hola! Bienvenid@ a la tienda SHINA SHOP."); // Este va de la mano con el de abajo
             }
             
             setTimeout(mostrarMensaje, 3000); // despues de 3 segundos te arroja la alerta de bienvenida
@@ -347,7 +347,7 @@
                         <div v-if="comment.id === editingId" class="edit-form">
                             <h3>Editar Comentario</h3>
                             <label for="edit-author">Autor:</label>
-                            <input type="text" id="edit-author" v-model="editedComment.author" required>
+                            <input type="text" id="edit-author" v-model="editedComment.author" required> 
                             <br>
                             <label for="edit-rating">Valoración:</label>
                             <select id="edit-rating" v-model="editedComment.rating" required>
@@ -373,9 +373,9 @@
 
                 <!-- Formulario para agregar un nuevo comentario -->
                 <div class="new-comment">
-                    <h2>Agregar un Comentario</h2>
-                    <label for="new-author">Nombre del Cliente:</label>
-                    <input type="text" id="new-author" v-model="newComment.author" required>
+                    <h2>Agregar un Comentario</h2> <!-- Título del formulario -->
+                    <label for="new-author">Nombre del Cliente:</label> <!-- Campo para ingresar el nombre del cliente -->
+                    <input type="text" id="new-author" v-model="newComment.author" required> 
                     <br>
                     <br>
                     <label for="new-rating">Valoración:</label>
@@ -385,24 +385,24 @@
                     </select>
                     <br>
                     <br>
-                    <label for="new-content">Comentario:</label>
-                    <textarea id="new-content" v-model="newComment.content" required></textarea>
+                    <label for="new-content">Comentario:</label> <!-- Campo para ingresar el comentario -->
+                    <textarea id="new-content" v-model="newComment.content" required></textarea> <!-- Campo para ingresar el contenido del comentario -->
                     <br>
                     <br>
-                    <button @click="addComment">Enviar Comentario</button>
+                    <button @click="addComment">Enviar Comentario</button> <!-- Botón para enviar comentario -->
                     <button @click="downloadComments">Descargar Comentarios</button> <!-- Botón para descargar comentarios -->
                 </div>
             </div>
         </section>
 
-        <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2"></script> <!-- Se hace referencia a la libreria de Vue.js -->
         <script>
             new Vue({
                 el: '#comments',
                 data: {
                     comments: [
-                        { id: 1, author: 'Esteban Caceres', date: '2024-06-22', rating: 5, content: 'Excelente producto, muy recomendado.' },
-                        { id: 2, author: 'María Vera', date: '2024-06-21', rating: 4, content: 'Buena calidad, pero el envío fue lento.' }
+                        { id: 1, author: '-Esteban Caceres', date: '2024-06-22', rating: 5, content: 'Excelente producto, muy recomendado.' },
+                        { id: 2, author: '-María Vera', date: '2024-06-21', rating: 4, content: 'Buena calidad, pero el envío fue lento.' }
                     ],
                     newComment: {
                         author: '',
@@ -420,12 +420,12 @@
                 methods: {
                     addComment() {
                         if (!this.newComment.author || !this.newComment.rating || !this.newComment.content) {
-                            alert('Por favor completa todos los campos.');
+                            alert('Por favor completa todos los campos.'); // Muestra una alerta si no se completan todos los campos
                             return;
                         }
 
-                        const currentDate = new Date().toISOString().slice(0, 10);
-                        const newId = this.comments.length > 0 ? this.comments[this.comments.length - 1].id + 1 : 1;
+                        const currentDate = new Date().toISOString().slice(0, 10); // Obtiene la fecha actual en formato YYYY-MM-DD
+                        const newId = this.comments.length > 0 ? this.comments[this.comments.length - 1].id + 1 : 1; // Obtiene el ID del nuevo comentario
 
                         this.comments.push({
                             id: newId,
@@ -433,57 +433,57 @@
                             rating: parseInt(this.newComment.rating),
                             content: this.newComment.content,
                             date: currentDate
-                        });
+                        }); // Agrega el nuevo comentario al array de comentarios
 
-                        this.newComment.author = '';
-                        this.newComment.rating = '';
-                        this.newComment.content = '';
+                        this.newComment.author = ''; // Limpia el campo de autor
+                        this.newComment.rating = ''; // Limpia el campo de valoración
+                        this.newComment.content = ''; // Limpia el campo de contenido
                     },
                     editComment(comment) {
-                        this.editingId = comment.id;
+                        this.editingId = comment.id; // Establece el ID del comentario que se está editando
                         this.editedComment = {
                             id: comment.id,
                             author: comment.author,
                             rating: comment.rating,
                             content: comment.content
-                        };
+                        }; // Establece los datos del comentario que se está editando
                     },
                     updateComment() {
-                        const index = this.comments.findIndex(comment => comment.id === this.editedComment.id);
+                        const index = this.comments.findIndex(comment => comment.id === this.editedComment.id); // Busca el índice del comentario que se está editando
                         if (index !== -1) {
-                            this.comments[index].author = this.editedComment.author;
-                            this.comments[index].rating = this.editedComment.rating;
-                            this.comments[index].content = this.editedComment.content;
+                            this.comments[index].author = this.editedComment.author; // Actualiza los datos del comentario
+                            this.comments[index].rating = this.editedComment.rating; // Actualiza los datos del comentario
+                            this.comments[index].content = this.editedComment.content; // Actualiza los datos del comentario
                         }
 
-                        this.cancelEdit();
+                        this.cancelEdit(); // Cancela la edición del comentario
                     },
                     deleteComment(id) {
                         if (confirm('¿Estás seguro de eliminar este comentario?')) {
-                            this.comments = this.comments.filter(comment => comment.id !== id);
-                            this.cancelEdit();
+                            this.comments = this.comments.filter(comment => comment.id !== id); // Elimina el comentario
+                            this.cancelEdit(); // Cancela la edición del comentario
                         }
                     },
                     cancelEdit() {
-                        this.editingId = null;
+                        this.editingId = null; // Restablece el ID del comentario que se está editando
                         this.editedComment = {
                             id: null,
                             author: '',
                             rating: '',
                             content: ''
-                        };
+                        }; // Restablece los datos del comentario que se está editando
                     },
                     downloadComments() {
-                        const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.comments));
-                        const downloadAnchorNode = document.createElement('a');
-                        downloadAnchorNode.setAttribute("href", dataStr);
-                        downloadAnchorNode.setAttribute("download", "comments.json");
-                        document.body.appendChild(downloadAnchorNode); // required for firefox
-                        downloadAnchorNode.click();
-                        downloadAnchorNode.remove();
+                        const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.comments)); // Convierte los comentarios a formato JSON
+                        const downloadAnchorNode = document.createElement('a'); // Crea un elemento <a> para descargar los comentarios
+                        downloadAnchorNode.setAttribute("href", dataStr); // Establece el atributo href del elemento <a>
+                        downloadAnchorNode.setAttribute("download", "comments.json"); // Establece el atributo download del elemento <a>
+                        document.body.appendChild(downloadAnchorNode); // Agrega el elemento <a> al cuerpo del documento
+                        downloadAnchorNode.click(); // Simula un clic en el elemento <a>
+                        downloadAnchorNode.remove(); // Elimina el elemento <a> del cuerpo del documento
                     }
                 }
-            });
+            }); 
         </script>
     </main>
 
