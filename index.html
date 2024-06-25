@@ -7,7 +7,7 @@
         <title>Xina_Shop</title> <!-- TITULO DE LA PAGINA WEB -->
         <style>
         .color_body {
-            font-family: Arial, sans-serif;
+            font-family: Arial, sans-serif; 
             margin: 0;
             padding: 0;
             background-color: rgb(18, 255, 251);
@@ -88,13 +88,13 @@
             text-align: left;
         }
         th, td {
-            border: 1px solid black;
+            border: 5px solid rgb(29, 30, 29);
             padding: 8px;
             text-align: left;
             border-style: inset;
-            background-color: #7bcec2;
+            background-color: #ef9aa3;
         }
-        
+
         
         .horario {
             color:rgb(198, 132, 132);
@@ -102,7 +102,7 @@
             font-family:Helvetica;
             padding: 10px;
             text-align: center;
-            border: 2px solid rgb(15, 14, 14);
+            border: 7px solid rgb(61, 61, 246);
             border-radius: 20px;
             color: rgb(1, 10, 1);
         }
@@ -158,9 +158,9 @@
           }
 
           /* Estilos para el modo oscuro */
-         .dark-mode {
-            background-color: #333;
-            color: #fff;
+          .dark-mode {
+            background-color: #565555;
+            color: #f3f3f3;
           }
 
 
@@ -187,10 +187,16 @@
                     </ul>
                 </nav>
             </header>
+
+            
             <br />
-            <button onclick="toggleDarkMode()">Cambiar a modo oscuro</button>
+            <!-- Boton para modo oscuro-->
+            <button onclick="toggleDarkMode()">Cambiar a modo oscuro</button> 
+         
+              
     
             <br />
+            <!-- Seccion home-->
             <section id="home">
                 <br>
                 <h2>Bienvenid@s a la tienda <b>XINA_SHOP</b></h2>
@@ -198,6 +204,7 @@
                 <div class="relative">
                     <img src="Imagenes/xinashop.jpg" alt="Imagen de inicio" class="imagen">
                 </div>
+            <!-- Seccion quienes somos-->    
             </section>
             <section id="quienes-somos">
                 <br />
@@ -213,7 +220,7 @@
             </div>
     
             <br />
-            
+            <!-- Tabla de horarios -->
             <table>
                 <tr>
                     <th>D&iacute;a</th>
@@ -239,7 +246,9 @@
             <h2><b>Reg&iacute;strate aqu&iacute;</b></h2>
             <p>¡Reg&iacute;strate para recibir información de nuestras promociones y descuentos!</p>
 
-            <form id="miForm" method="post" onsubmit="return handleFormSubmit(event)"> <!-- Formulario de registro -->
+
+            <!-- Formulario de registro -->
+            <form id="miForm" method="post" onsubmit="return handleFormSubmit(event)"> 
                 <label for="nombre">Nombre:</label> <!-- Campo para ingresar el nombre -->
                 <input type="text" id="nombre" name="nombre" required> <!-- Campo para ingresar el nombre -->
                 <span id="error-nombre" style="color: red; display: none;">El nombre no puede contener números.</span> <!-- Mensaje de error -->
@@ -249,13 +258,16 @@
                 <input type="email" id="email" name="email" required> <!-- Campo para ingresar el email -->
                 <br>
 
-                <button class="btn"> <!-- Botón para enviar el formulario -->
+                <!-- Botón para enviar el formulario -->
+                <button class="btn"> 
                     ENVIAR
                 </button>
                 
             </form>
         </section>
 
+
+        <!-- Funciones -->
         <script>
             function handleFormSubmit(event) {
                 event.preventDefault();  // Previene el comportamiento predeterminado del envío del formulario
@@ -270,7 +282,7 @@
                         alert("El nombre no puede contener números.");  // Aqui muestra la alerta si el usuario ingresa numeros
                         return false;  // Evita que el formulario se envíe
                     } else {
-                        errorNombre.style.display = 'none';
+                        errorNombre.style.display = 'none'; // Oculta la alerta si el usuario no ingresa números
                         return true;  // Permite que el formulario se envíe
                     }
                 }
@@ -281,10 +293,10 @@
                 }  // Aquí se muestra el mensaje despues de registrarse mas el nombre que ingreso el usuario
 
                 if (validateForm()) {
-                    mostrarMensaje();
+                    mostrarMensaje(); // Muestra el mensaje si el formulario es válido
                     // Aquí puedes agregar la lógica para enviar el formulario si es necesario
-                    document.getElementById('miForm').submit();  // Envía el formulario
-                }
+                    document.getElementById('miForm').submit();  // Envía el formulario 
+                } 
 
             }
             function mostrarMensaje() {
@@ -292,21 +304,23 @@
             }
             
             setTimeout(mostrarMensaje, 3000); // despues de 3 segundos te arroja la alerta de bienvenida
-
+            
+            // Función para cambiar entre el modo oscuro y claro 
             function toggleDarkMode() {
-                const body = document.body;
-                body.classList.toggle('dark-mode');
-                const isDarkMode = body.classList.contains('dark-mode');
+                const body = document.body; 
+                body.classList.toggle('dark-mode'); // Alterna la clase dark-mode en el body
+                const isDarkMode = body.classList.contains('dark-mode'); // Verifica si el modo oscuro está activado
                 localStorage.setItem('dark-mode', isDarkMode);  // permite cambiar entre el modo oscuro y claro al hacer clic en el botón.
             }
-    
+            
+            // Función para mantener el modo oscuro activado al recargar la página 
             window.onload = function() {
-                const isDarkMode = localStorage.getItem('dark-mode') === 'true';
+                const isDarkMode = localStorage.getItem('dark-mode') === 'true'; // === Compara tanto el valor como el tipo de los operandos.
                 const body = document.body;
                 if (isDarkMode) {
                     body.classList.add('dark-mode');
                 }
-            }; // asegura que el modo oscuro se mantenga o se active automáticamente al cargar la página, utilizando la información guardada en localStorage
+            }; 
 
       
             
@@ -324,64 +338,64 @@
         <br />
 
         <!-- Comentarios  -->
-        <section id="comentarios">
-            <div id="comments">
-                <h1>¡ Comenta con nosotros !</h1>
+        <section id="comentarios"> <!-- Sección de comentarios -->
+            <div  id="comments"> <!-- Contenedor de comentarios -->
+                <h1>¡ Comenta con nosotros !</h1> <!-- Título de la sección -->
 
                 <!-- Lista de comentarios -->
-                <div v-if="comments.length > 0">
-                    <div class="comment" v-for="comment in comments" :key="comment.id">
-                        <div class="info">
-                            <span>{{ comment.author }}</span> - <span>{{ comment.date }}</span>
-                            <div class="rating">
-                                <span v-for="n in comment.rating" class="fa fa-star"></span>
+                <div v-if="comments.length > 0"> <!-- Verifica si hay comentarios -->
+                    <div class="comment" v-for="comment in comments" :key="comment.id"> <!-- Recorre los comentarios -->
+                        <div class="info"> <!-- Información del comentario -->
+                            <span>{{ comment.author }}</span> - <span>{{ comment.date }}</span> <!-- Cliente y fecha del comentario -->
+                            <div class="rating"> <!-- Valoración del comentario -->
+                                <span v-for="n in comment.rating" class="fa fa-star"></span> <!-- Muestra las estrellas de la valoración -->
                             </div>
                         </div>
-                        <p>{{ comment.content }}</p>
-                        <button @click="editComment(comment)">Editar</button>
+                        <p>{{ comment.content }}</p> <!-- Contenido del comentario -->
+                        <button @click="editComment(comment)">Editar</button> <!-- Botón para editar el comentario -->
+                        <br> <!-- Salto de línea -->
                         <br>
-                        <br>
-                        <button @click="deleteComment(comment.id)">Eliminar</button>
+                        <button @click="deleteComment(comment.id)">Eliminar</button> <!-- Botón para eliminar el comentario -->
 
                         <!-- Formulario de edición -->
-                        <div v-if="comment.id === editingId" class="edit-form">
-                            <h3>Editar Comentario</h3>
-                            <label for="edit-author">Autor:</label>
-                            <input type="text" id="edit-author" v-model="editedComment.author" required> 
-                            <br>
-                            <label for="edit-rating">Valoración:</label>
-                            <select id="edit-rating" v-model="editedComment.rating" required>
-                                <option disabled value="">Selecciona una valoración</option>
-                                <option v-for="n in 5" :value="n">{{ n }} estrella(s)</option>
+                        <div v-if="comment.id === editingId" class="edit-form"> <!-- Verifica si se está editando el comentario -->
+                            <h3>Editar Comentario</h3> <!-- Título del formulario -->
+                            <label for="edit-author">Autor:</label> <!-- Campo para editar el Cliente -->
+                            <input type="text" id="edit-author" v-model="editedComment.author" required>  <!-- Campo para editar el Cliente -->
+                            <br> <!-- Salto de línea -->
+                            <label for="edit-rating">Valoración:</label> <!-- Campo para editar la valoración -->
+                            <select id="edit-rating" v-model="editedComment.rating" required> <!-- Campo para editar la valoración -->
+                                <option disabled value="">Selecciona una valoración</option> <!-- Opción por defecto -->
+                                <option v-for="n in 5" :value="n">{{ n }} estrella(s)</option> <!-- Opciones de valoración -->
                             </select>
                             <br>
                             <br>
-                            <label for="edit-content">Comentario:</label>
-                            <textarea id="edit-content" v-model="editedComment.content" required></textarea>
+                            <label for="edit-content">Comentario:</label> <!-- Campo para editar el comentario -->
+                            <textarea id="edit-content" v-model="editedComment.content" required></textarea> <!-- Campo para editar el comentario -->
+                            <br>
+                            <br> <!-- Salto de línea -->
+                            <button @click="updateComment">Actualizar</button> <!-- Botón para actualizar el comentario -->
                             <br>
                             <br>
-                            <button @click="updateComment">Actualizar</button>
-                            <br>
-                            <br>
-                            <button @click="cancelEdit">Cancelar</button>
+                            <button @click="cancelEdit">Cancelar</button> <!-- Botón para cancelar la edición del comentario -->
                         </div>
                     </div>
                 </div>
                 <div v-else>
-                    <p>No hay comentarios aún.</p>
+                    <p>No hay comentarios aún.</p> <!-- Mensaje si no hay comentarios -->
                 </div>
 
                 <!-- Formulario para agregar un nuevo comentario -->
                 <div class="new-comment">
                     <h2>Agregar un Comentario</h2> <!-- Título del formulario -->
-                    <label for="new-author">Nombre del Cliente:</label> <!-- Campo para ingresar el nombre del cliente -->
-                    <input type="text" id="new-author" v-model="newComment.author" required> 
+                    <label for="new-author">Ingresa tu nombre:</label> <!-- Campo para ingresar el nombre del cliente -->
+                    <input type="text" id="new-author" v-model="newComment.author" required> <!-- Campo para ingresar el nombre del cliente -->
                     <br>
                     <br>
-                    <label for="new-rating">Valoración:</label>
-                    <select id="new-rating" v-model="newComment.rating" required>
-                        <option disabled value="">Selecciona una valoración</option>
-                        <option v-for="n in 5" :value="n">{{ n }} estrella(s)</option>
+                    <label for="new-rating">Valoración:</label> <!-- Campo para ingresar la valoración -->
+                    <select id="new-rating" v-model="newComment.rating" required> <!-- Campo para ingresar la valoración -->
+                        <option disabled value="">Danos una calificacion</option> <!-- Opción por defecto -->
+                        <option v-for="n in 5" :value="n">{{ n }} estrella(s)</option> <!-- Opciones de valoración -->
                     </select>
                     <br>
                     <br>
@@ -401,20 +415,20 @@
                 el: '#comments',
                 data: {
                     comments: [
-                        { id: 1, author: '-Esteban Caceres', date: '2024-06-22', rating: 5, content: 'Excelente producto, muy recomendado.' },
-                        { id: 2, author: '-María Vera', date: '2024-06-21', rating: 4, content: 'Buena calidad, pero el envío fue lento.' }
+                        { id: 1, author: '-Esteban Caceres', date: '2024-06-22', rating: 5, content: 'Excelente producto, muy recomendado.' }, // Comentarios predefinidos
+                        { id: 2, author: '-María Vera', date: '2024-06-21', rating: 4, content: 'Buena calidad, pero el envío fue lento.' } // Comentarios predefinidos
                     ],
-                    newComment: {
-                        author: '',
-                        rating: '',
-                        content: ''
+                    newComment: { // Datos del nuevo comentario
+                        author: '', // Autor del comentario
+                        rating: '', // Valoración del comentario
+                        content: '' // Contenido del comentario
                     },
-                    editingId: null,
-                    editedComment: {
-                        id: null,
-                        author: '',
-                        rating: '',
-                        content: ''
+                    editingId: null, // ID del comentario que se está editando
+                    editedComment: { // Datos del comentario que se está editando
+                        id: null, // ID del comentario
+                        author: '', // Autor del comentario
+                        rating: '', // Valoración del comentario
+                        content: '' // Contenido del comentario
                     }
                 },
                 methods: {
